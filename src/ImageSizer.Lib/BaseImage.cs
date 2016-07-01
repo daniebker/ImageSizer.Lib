@@ -20,6 +20,12 @@ namespace ImageSizer.Lib
             
         }
 
+        public BaseImage(BaseImage baseImage, ImageSize newSize)
+            : this(baseImage.ImageBytes, newSize, baseImage.FilePath, baseImage.PropertyItems)
+        {
+
+        }
+
         public byte[] ImageBytes { get; set; }
         
         public PropertyItem[] PropertyItems { get; set; }

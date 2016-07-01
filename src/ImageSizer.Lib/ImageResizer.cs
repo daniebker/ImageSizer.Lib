@@ -9,7 +9,7 @@ namespace ImageSizer.Lib
             if (targetLongestEdge > baseImage.Width
                 && targetLongestEdge > baseImage.Height)
             {
-                throw new ArgumentOutOfRangeException(nameof(baseImage), "Target longest edge is greater than width and height of original BaseImage");
+                throw new ArgumentOutOfRangeException(nameof(targetLongestEdge), "Target longest edge is greater than width and height of Original Image");
             }
 
             int longestEdge = Math.Max(baseImage.Width, baseImage.Height);
@@ -17,14 +17,33 @@ namespace ImageSizer.Lib
 
             ImageSize newSize = DivideImageSizeByRatio(baseImage.ImageSize, ratio);
 
-            return new BaseImage(baseImage.ImageBytes, newSize, baseImage.FilePath, baseImage.PropertyItems);
+            return new BaseImage(baseImage, newSize);
         }
 
         public BaseImage MakeFiftyPercentSmaller(BaseImage baseImage)
         {
             ImageSize newSize = DivideImageSizeByRatio(baseImage.ImageSize, 2);
 
-            return new BaseImage(baseImage.ImageBytes, newSize, baseImage.FilePath, baseImage.PropertyItems);
+            return new BaseImage(baseImage, newSize);
+        }
+
+        public BaseImage ResizeWidthBy(BaseImage baseImage, int width)
+        {
+            if (width > baseImage.Width)
+            {
+                throw new ArgumentOutOfRangeException(nameof(width), "Target width is greater than the width of the Original Image");
+            }
+
+            ImageSize newSize = new ImageSize(width, baseImage.Height);
+
+            return new BaseImage(baseImage, newSize);
+        }
+
+        public BaseImage ResizeHeight(BaseImage baseImage, int height)
+        {
+            ImageSize newSize = new ImageSize(baseImage.Width, height);
+
+            return new BaseImage(baseImage, newSize);
         }
 
         private ImageSize DivideImageSizeByRatio(ImageSize imageSize, float ratio)

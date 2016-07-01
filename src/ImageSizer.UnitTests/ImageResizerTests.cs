@@ -38,6 +38,12 @@ namespace ImageSizer.UnitTests
         }
 
         [Test]
+        public void ResizeByLongestEdge_GivenTargetSizeIsLargerThanImage_Throws()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => _imageResizer.ResizeByLongestEdge(_arbitraryLandscapeBaseImage, 1000));
+        }
+
+        [Test]
         public void MakeFiftyPercentSmaller_GivenImage_ResizesWidthByFiftyPercent()
         {
             BaseImage resizedBaseImage = _imageResizer.MakeFiftyPercentSmaller(_arbitraryLandscapeBaseImage);
@@ -54,9 +60,33 @@ namespace ImageSizer.UnitTests
         }
 
         [Test]
-        public void ResizeByLongestEdge_GivenTargetSizeIsLargerThanImage_Throws()
+        public void ResizeWidth_SetWidthTo300_WidthIsResizedButNotHeight()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => _imageResizer.ResizeByLongestEdge(_arbitraryLandscapeBaseImage, 1000));
+            BaseImage resizedImage = _imageResizer.ResizeWidthBy(_arbitraryLandscapeBaseImage, 300);
+
+            Assert.AreEqual(_arbitraryLandscapeBaseImage.Height, resizedImage.Height);
+        }
+
+        [Test]
+        public void ResizeWidth_SetWidthTo300_WidthIsResized()
+        {
+            BaseImage resizedImage = _imageResizer.ResizeWidthBy(_arbitraryLandscapeBaseImage, 300);
+
+            Assert.AreEqual(300, resizedImage.Width);
+        }
+
+        [Test]
+        public void ResizeWidth_GivenTargetSizeIsLargerThanImage_Throws()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => _imageResizer.ResizeWidthBy(_arbitraryLandscapeBaseImage, 1000));
+        }
+
+        [Test]
+        public void ResizeHeight_SetHeightTo200_WidthIsNotResized()
+        {
+            BaseImage resizedBaseImage = _imageResizer.ResizeHeight(_arbitraryPortraitBaseImage, 100);
+
+            Assert.AreEqual(_arbitraryPortraitBaseImage.Width, resizedBaseImage.Width);
         }
     }
 }
