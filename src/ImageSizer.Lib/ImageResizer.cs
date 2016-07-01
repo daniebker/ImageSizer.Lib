@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.UI.WebControls;
 
 namespace ImageSizer.Lib
 {
@@ -20,9 +21,11 @@ namespace ImageSizer.Lib
             return new BaseImage(baseImage, newSize);
         }
 
-        public BaseImage MakeFiftyPercentSmaller(BaseImage baseImage)
+        public BaseImage ResizeByPercent(BaseImage baseImage, int percent)
         {
-            ImageSize newSize = DivideImageSizeByRatio(baseImage.ImageSize, 2);
+            float ratio = 100f/(100-percent);
+            
+            ImageSize newSize = DivideImageSizeByRatio(baseImage.ImageSize, ratio);
 
             return new BaseImage(baseImage, newSize);
         }
@@ -39,8 +42,12 @@ namespace ImageSizer.Lib
             return new BaseImage(baseImage, newSize);
         }
 
-        public BaseImage ResizeHeight(BaseImage baseImage, int height)
+        public BaseImage ResizeHeightBy(BaseImage baseImage, int height)
         {
+            if (height > baseImage.Height)
+            {
+                throw new ArgumentOutOfRangeException(nameof(height), "Target height is greater than the height of the Ori");
+            }
             ImageSize newSize = new ImageSize(baseImage.Width, height);
 
             return new BaseImage(baseImage, newSize);
@@ -48,7 +55,6 @@ namespace ImageSizer.Lib
 
         private ImageSize DivideImageSizeByRatio(ImageSize imageSize, float ratio)
         {
-
             int newWidth = (int)(imageSize.Width / ratio);
             int newHeight = (int)(imageSize.Height / ratio);
 

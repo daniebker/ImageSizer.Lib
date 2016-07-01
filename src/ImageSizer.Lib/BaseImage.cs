@@ -13,13 +13,7 @@ namespace ImageSizer.Lib
             PropertyItems = propertyItems;
             FileName = Path.GetFileName(FilePath);
         }
-
-        public BaseImage(BaseImage baseImage) 
-            : this(baseImage.ImageBytes, baseImage.ImageSize, baseImage.FilePath, baseImage.PropertyItems)
-        {
-            
-        }
-
+        
         public BaseImage(BaseImage baseImage, ImageSize newSize)
             : this(baseImage.ImageBytes, newSize, baseImage.FilePath, baseImage.PropertyItems)
         {
@@ -35,9 +29,7 @@ namespace ImageSizer.Lib
         public ImageSize ImageSize { get; set; }
 
         public string FileName { get; set; }
-
-        public string Extension => Path.GetExtension(FileName);
-
+        
         public int Width => ImageSize.Width;
 
         public int Height => ImageSize.Height;
