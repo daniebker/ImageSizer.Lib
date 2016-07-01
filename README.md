@@ -1,11 +1,12 @@
 # ImageSizer.Lib
 
-A basic library for re-sizing images. ImageSizer allows re-sizing of images on a file systems or within memory. It also keeps the EXIF info of the original image in the re-sized image.
+A basic library for re-sizing images. 
 
-# Support
+# Features
 
-Support for in memory or file system images.
+* Resize images and persist to a file system or memory. 
+* Keep the EXIF info of the original image.
 
 # Supported File Formats
 
-* `jpg`
+`jpg`
