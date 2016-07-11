@@ -1,6 +1,6 @@
 # ImageSizer.Lib
 
-A basic library for re-sizing images. 
+A basic WPF App for re-sizing images. 
 
 # Features
 
