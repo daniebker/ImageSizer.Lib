@@ -5,7 +5,7 @@ namespace ImageSizer.Lib.Persistance
 {
     public class AbstractImageOperations
     {
-        protected void SetPropertyItems(BaseImage baseImage, Bitmap newImage)
+        protected void SetPropertyItems(ImageFile baseImage, Bitmap newImage)
         {
             foreach (var propertyItem in baseImage.PropertyItems)
             {
