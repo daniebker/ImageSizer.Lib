@@ -9,14 +9,25 @@ namespace ImageSizer.WPFApp.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _folderPath;
-        public string FolderPath
+        private string _inputFolderPath;
+        public string InputFolderPath
         {
-            get {return _folderPath; }
+            get {return _inputFolderPath; }
             set
             {
-                _folderPath = value;
-                OnPropertyChanged(nameof(FolderPath));
+                _inputFolderPath = value;
+                OnPropertyChanged(nameof(InputFolderPath));
+            }
+        }
+        
+        private string _outputFolderPath;
+        public string OutputFolderPath
+        {
+            get { return _outputFolderPath; }
+            set
+            {
+                _outputFolderPath = value;
+                OnPropertyChanged(nameof(OutputFolderPath));
             }
         }
 
@@ -52,7 +63,7 @@ namespace ImageSizer.WPFApp.Models
                 OnPropertyChanged(nameof(FiftyPercentSmaller));
             }
         }
-       
+
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

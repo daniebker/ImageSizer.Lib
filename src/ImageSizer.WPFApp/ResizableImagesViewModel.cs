@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
@@ -17,7 +16,7 @@ namespace ImageSizer.WPFApp
     {
         private IBatchImageResizer _batchImageResizer;
         private DelegateCommand _resizeImagesCommand;
-        private List<ImageModel> _images;
+
         private ImageOperations _imageOperations;
 
         public ResizeImagesModel ResizeImagesModel { get; private set; }
@@ -34,22 +33,32 @@ namespace ImageSizer.WPFApp
             var imageResizer = new ImageResizer();
             _batchImageResizer = new BatchImageResizer(directoryReader, imageResizer);
 
-
-            _images = new List<ImageModel>();
-
             ResizeImagesModel = new ResizeImagesModel();
         }
 
-        private DelegateCommand _openFolderCommand;
-        public ICommand OpenFolderCommand
+        private DelegateCommand _openInputFolderCommand;
+        public ICommand OpenInputFolderCommand
         {
             get
             {
-                if (_openFolderCommand == null)
+                if (_openInputFolderCommand == null)
                 {
-                    _openFolderCommand = new DelegateCommand(OpenFolderExecute);
+                    _openInputFolderCommand = new DelegateCommand(OpenInputFolderExecute);
                 }
-                return _openFolderCommand;
+                return _openInputFolderCommand;
+            }
+        }
+
+        private DelegateCommand _openOutputFolderCommand;
+        public ICommand OpenOutputFolderCommand
+        {
+            get
+            {
+                if (_openOutputFolderCommand == null)
+                {
+                    _openOutputFolderCommand = new DelegateCommand(OpenOutputFolderExecute);
+                }
+                return _openOutputFolderCommand;
             }
         }
 
@@ -68,39 +77,48 @@ namespace ImageSizer.WPFApp
         //TODO update button to clickable when list is populated.
         private bool CanResizeImagesExecute()
         {
-            return _images.Any();
+            return true;
         }
 
         private void ResizeImagesExecute()
         {
-            //TODO refactor this out
             if (ResizeImagesModel.FiftyPercentSmaller)
             {
-               IList<ImageFile> iamges = _batchImageResizer.ResizeImagesOnPathByPercent(ResizeImagesModel.FolderPath, 50);
-                _imageOperations.WriteImagesToDirectory(@"C:\Users\baker\Desktop", iamges);
+               IList<ImageFile> iamges = _batchImageResizer.ResizeImagesOnPathByPercent(ResizeImagesModel.InputFolderPath, 50);
+                _imageOperations.WriteImagesToDirectory(ResizeImagesModel.OutputFolderPath, iamges);
             }
         }
 
-        private void OpenFolderExecute()
+        private void OpenInputFolderExecute()
         {
-            var folderBrowserDialog = new FolderBrowserDialog();
-
-            DialogResult result = folderBrowserDialog.ShowDialog();
+            DialogResult result;
+            FolderBrowserDialog folderBrowserDialog = TryOpenFolderBrowserDialog(out result);
 
             if (result.Equals(DialogResult.OK))
             {
-                ResizeImagesModel.FolderPath = folderBrowserDialog.SelectedPath; ;
+                ResizeImagesModel.InputFolderPath = folderBrowserDialog.SelectedPath; ;
             }
+        }
 
-            //TODO refactor
-            try
-            {                               
-                
-            }
-            catch (Exception ex)
+        private void OpenOutputFolderExecute()
+        {
+            DialogResult result;
+            FolderBrowserDialog folderBrowserDialog = TryOpenFolderBrowserDialog(out result);
+
+            if (result.Equals(DialogResult.OK))
             {
-                Console.WriteLine(ex.Message);
+                ResizeImagesModel.OutputFolderPath = folderBrowserDialog.SelectedPath; ;
             }
+        }
+
+        private FolderBrowserDialog TryOpenFolderBrowserDialog(out DialogResult result)
+        {
+
+            var folderBrowserDialog = new FolderBrowserDialog();
+
+            result = folderBrowserDialog.ShowDialog();
+
+            return folderBrowserDialog;
         }
     }
 }
