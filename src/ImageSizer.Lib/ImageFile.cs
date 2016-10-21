@@ -37,6 +37,10 @@ namespace ImageSizer.Lib
             {
                 return ImageFormat.Jpeg;
             }
+            if (fileExtension.Equals(".png"))
+            {
+                return ImageFormat.Png;
+            }
 
             throw new NotImplementedException($@"ImageFormat {fileExtension} not supported");
         }

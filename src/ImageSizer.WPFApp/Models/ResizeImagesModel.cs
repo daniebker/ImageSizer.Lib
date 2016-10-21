@@ -64,7 +64,20 @@ namespace ImageSizer.WPFApp.Models
             }
         }
 
-
+        private bool _twentyFivePercentSmaller;
+        public bool TwentyFivePercentSmaller
+        {
+            get
+            {
+                return _twentyFivePercentSmaller;
+            }
+            set
+            {
+                _twentyFivePercentSmaller = value;
+                OnPropertyChanged(nameof(TwentyFivePercentSmaller));
+            }
+        }
+        
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

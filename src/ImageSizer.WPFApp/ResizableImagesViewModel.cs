@@ -80,11 +80,18 @@ namespace ImageSizer.WPFApp
 
         private void ResizeImagesExecute()
         {
+            int percent = 0;
             if (ResizeImagesModel.FiftyPercentSmaller)
             {
-               IList<ImageFile> iamges = _batchImageResizer.ResizeImagesOnPathByPercent(ResizeImagesModel.InputFolderPath, 50);
-                _imageOperations.WriteImagesToDirectory(ResizeImagesModel.OutputFolderPath, iamges);
+                percent = 50;
             }
+            else if (ResizeImagesModel.TwentyFivePercentSmaller)
+            {
+                percent = 25;
+            }
+
+            IList<ImageFile> images = _batchImageResizer.ResizeImagesOnPathByPercent(ResizeImagesModel.InputFolderPath, percent);
+            _imageOperations.WriteImagesToDirectory(ResizeImagesModel.OutputFolderPath, images);
         }
 
         private void OpenInputFolderExecute()
