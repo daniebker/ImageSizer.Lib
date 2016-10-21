@@ -1,6 +1,5 @@
 # ImageSizer.Lib
-
-A basic WPF App for re-sizing images. 
+A dotnet library for resizing images
 
 # Features
 
@@ -9,4 +8,4 @@ A basic WPF App for re-sizing images.
 
 # Supported File Formats
 
-`jpg`
+`jpg, png`
