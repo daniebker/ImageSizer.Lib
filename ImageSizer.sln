@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSizer.Lib", "src\ImageSizer.Lib\ImageSizer.Lib.csproj", "{1B8669A7-BBD2-4289-AA75-7DC23C102D5D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSizer.Lib.Tests", "src\ImageSizer.UnitTests\ImageSizer.Lib.Tests.csproj", "{0BFC1741-8AB5-486A-8101-AD49ED385CDF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSizer.Lib.AcceptanceTests", "src\ImageSizer.Lib.AcceptanceTests\ImageSizer.Lib.AcceptanceTests.csproj", "{3673A65A-727F-445B-BA1A-807B234EDE88}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSizer.WPFApp", "src\ImageSizer.WPFApp\ImageSizer.WPFApp.csproj", "{87866599-782D-46E9-A847-2D4246D47B30}"
 EndProject
 Global
@@ -17,18 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1B8669A7-BBD2-4289-AA75-7DC23C102D5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B8669A7-BBD2-4289-AA75-7DC23C102D5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B8669A7-BBD2-4289-AA75-7DC23C102D5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B8669A7-BBD2-4289-AA75-7DC23C102D5D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BFC1741-8AB5-486A-8101-AD49ED385CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BFC1741-8AB5-486A-8101-AD49ED385CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BFC1741-8AB5-486A-8101-AD49ED385CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BFC1741-8AB5-486A-8101-AD49ED385CDF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3673A65A-727F-445B-BA1A-807B234EDE88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3673A65A-727F-445B-BA1A-807B234EDE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3673A65A-727F-445B-BA1A-807B234EDE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3673A65A-727F-445B-BA1A-807B234EDE88}.Release|Any CPU.Build.0 = Release|Any CPU
 		{87866599-782D-46E9-A847-2D4246D47B30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{87866599-782D-46E9-A847-2D4246D47B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87866599-782D-46E9-A847-2D4246D47B30}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -11,8 +11,7 @@ var configuration = Argument("configuration", "Release");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var buildDir = Directory("./ImageSizer/bin") + Directory(configuration);
-var imageSizerLibProjectJson = "./src/ImageSizer.Lib/project.json";
+var buildDir = Directory("./artifacts") + Directory(configuration);
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
